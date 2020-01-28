@@ -1,2 +1,3 @@
 # pythonVisual
-Testing visualizations libraries with python
+Testing visualizations libraries with python and randmon data samples
+
