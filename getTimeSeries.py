@@ -1,7 +1,12 @@
 import requests
+import json
 from privateKey import privateKeyModule
 
-apod_url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&datatype=json&apikey='+privateKeyModule.keyValue
-apod_dict = requests.get(apod_url).json()
+# get results and save to .json file 
+jsonUrl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&datatype=json&apikey='+privateKeyModule.keyValue
+jsonResult = requests.get(jsonUrl).json()
 
-print(apod_dict)
+with open('file.json', 'w', encoding='utf-8') as f:
+    json.dump(jsonResult, f, ensure_ascii=False, indent=4)
+
+
