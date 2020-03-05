@@ -1,6 +1,7 @@
 import requests
 import json
 import pandas as pd
+import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 from privateKey import privateKeyModule
@@ -20,14 +21,21 @@ def getInput():
 
 def convertToCsv(ticker):
     jsonFile = pd.read_json (filepathModule.filePath+ticker+'.json')
-    export_csv = jsonFile.to_csv (filepathModule.filePath+ticker+'.csv', index = None, header=True)
+    jsonFile.to_csv (filepathModule.filePath+ticker+'.csv', index = None, header=True)
     print("Finalized CSV convetion")
+
+# not working 
+def TableTicker(ticker):
+    df = pd.read_json(ticker+'.json')
+    df.set_index("Time Series (Daily)", inplace="True")
 
 tickerInput = getInput()
 if tickerInput:
     getJson(tickerInput)
     convertToCsv(tickerInput)
+    TableTicker(tickerInput)
 else:
     print("Sorry, no ticker provided. Exiting now.")
     exit
+
 
